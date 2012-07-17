@@ -16,7 +16,7 @@ class Api extends Oauth_Controller
 	}
 
     /* Install App */
-	function install_get()
+	function install_authd_get()
 	{
 		// Load
 		$this->load->library('installer');
@@ -63,21 +63,28 @@ class Api extends Oauth_Controller
 
     function create_authd_post()
     {    
-    	$this->load->model('data_model');
+    	$this->load->model('actions_model');
 
-		$data = array(
-			'user_id'	=> $this->oauth_user_id,
-			'text'		=> $this->input->post('text')
+		$action_data = array(
+			'user_id'			=> $this->oauth_user_id,
+			'user_state'		=> $this->input->post('user_state'),
+			'trigger'			=> $this->input->post('trigger'),
+			'trigger_type'		=> $this->input->post('trigger_type'),
+			'trigger_param'		=> $this->input->post('trigger_param'),
+			'trigger_value'		=> $this->input->post('trigger_value'),
+			'action'			=> $this->input->post('action'),
+			'action_target'		=> $this->input->post('action_target'),
+			'action_data'		=> $this->input->post('action_data')
 		);
 
 		// Add Data
-		if ($add_data = $this->data_model->add_data($data))
+		if ($add_action = $this->actions_model->add_action($action_data))
 		{
-        	$message = array('status' => 'success', 'message' => 'Data successfully created', 'data' => $add_data);
+        	$message = array('status' => 'success', 'message' => 'Action added successfully created', 'action' => $add_action);
         }
         else
         {
-	        $message = array('status' => 'error', 'message' => 'Oops unable to add data');
+	        $message = array('status' => 'error', 'message' => 'Oops unable to add Action');
         }
 	
         $this->response($message, 200);

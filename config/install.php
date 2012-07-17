@@ -55,6 +55,11 @@ $config['database_actions_actions_table'] = array(
 	'constraint' 			=> '32',
 	'null'					=> TRUE
 ),
+'action_target' => array(
+	'type'					=> 'VARCHAR',
+	'constraint' 			=> '64',
+	'null'					=> TRUE
+),
 'action_data' => array(
 	'type'					=> 'TEXT',
 	'null'					=> TRUE

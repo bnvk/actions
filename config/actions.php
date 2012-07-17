@@ -19,16 +19,16 @@ $config['actions_triggers_location_apps']	= array(
 /* Location Trigger Details */
 $config['actions_triggers_location']	= array(
 	'none'					=> '---select---',
-	'within_quarter_mile'	=> 'Within 1/4 Mile',
-	'within_half_mile'		=> 'Within 1/2 Mile',
-	'within_one_mile'		=> 'Within 1 Mile',
-	'within_two_miles'		=> 'Within 2 Miles',
-	'within_anywhere'		=> 'Within Anywhere'
+	'within_quarter_mile'	=> '1/4 Mile',
+	'within_half_mile'		=> '1/2 Mile',
+	'within_one_mile'		=> '1 Mile',
+	'within_two_miles'		=> '2 Miles',
+	'within_anywhere'		=> 'Anywhere'
 );
 
 /* Foursquare Triggers */
 $config['actions_triggers_type_foursquare'] = array(
 	'none'			=> '---select---',
-	'checkin_at'	=> 'I Checkin',
+	'checkin_at'	=> 'Checkin',
 	'last_checkin'	=> 'Last Checkin Was'
 );

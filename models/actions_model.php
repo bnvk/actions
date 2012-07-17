@@ -33,8 +33,8 @@ class Actions_model extends CI_Model {
 		$action_data['updated_at'] = unix_to_mysql(now());
 
 		$insert 	= $this->db->insert('actions', $action_data);
-		$data_id 	= $this->db->insert_id();
-		return $this->db->get_where('actions', array('action_id' => $action__id))->row();
+		$action_id 	= $this->db->insert_id();
+		return $this->db->get_where('actions', array('action_id' => $action_id))->row();
     }
 
     function udpate_action($data_id, $action_data)
