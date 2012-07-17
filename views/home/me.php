@@ -82,8 +82,8 @@
 		<h3>Do This</h3>
 		<select name="action_type" id="action_type">
 			<option value="">---select---</option>
-			<option value="message">Message</option>
-			<option value="post">Post</option>
+			<option value="message">Send A Message</option>
+			<option value="post">Post Some Content</option>
 		</select>
 	
 		<!-- Actions : Message -->

@@ -45,6 +45,11 @@ $config['database_actions_actions_table'] = array(
 	'constraint' 			=> '16',
 	'null'					=> TRUE
 ),
+'trigger_param' => array(
+	'type'					=> 'CHAR',
+	'constraint' 			=> '128',
+	'null'					=> TRUE
+),
 'trigger_detail' => array(
 	'type'					=> 'VARCHAR',
 	'constraint' 			=> '32',

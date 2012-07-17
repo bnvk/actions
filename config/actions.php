@@ -23,6 +23,8 @@ $config['actions_triggers_location']	= array(
 	'0.5'		=> '1/2 Mile',
 	'1'			=> '1 Mile',
 	'2'			=> '2 Miles',
+	'3'			=> '3 Miles',
+	'4'			=> '4 Miles',
 	'16000'		=> 'Anywhere'
 );
 
