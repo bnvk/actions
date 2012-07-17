@@ -30,19 +30,19 @@ $config['database_actions_actions_table'] = array(
 	'constraint' 			=> '11',
 	'null'					=> TRUE
 ),
-'state' => array(
+'user_state' => array(
 	'type'					=> 'CHAR',
 	'constraint' 			=> '32',
-	'null'					=> TRUE
-),
-'module' => array(
-	'type'					=> 'CHAR',
-	'constraint' 			=> '16',
 	'null'					=> TRUE
 ),
 'trigger' => array(
 	'type'					=> 'VARCHAR',
 	'constraint' 			=> '32',
+	'null'					=> TRUE
+),
+'trigger_type' => array(
+	'type'					=> 'CHAR',
+	'constraint' 			=> '16',
 	'null'					=> TRUE
 ),
 'trigger_detail' => array(

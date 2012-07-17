@@ -21,7 +21,8 @@ class Home extends Dashboard_Controller
 	
 	function me()
 	{
-		$this->data['sub_title'] = 'My Actions';
+		$this->data['users']		= $this->social_auth->get_users('active', 1, TRUE);
+		$this->data['sub_title'] 	= 'My Actions';
 	
 		$this->render('dashboard_wide');
 	}
