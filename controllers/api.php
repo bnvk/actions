@@ -125,9 +125,13 @@ class Api extends Oauth_Controller
     {
     	// Load Libraries for compatible Apps (foursquare, geoloqi, messages)
     	$this->load->library('foursquare/foursquare_library');
-    
+    	$this->load->model('actions/actions_model');
+ 
+ 
 	    // Query Actions Table for "actions"
-	    
+    	$actions = $this->actions_model->get_actions_view();
+    	
+    	print_r($actions);
 	    
 	    // Loop through "actions"
 	    

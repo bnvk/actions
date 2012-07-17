@@ -12,17 +12,17 @@
 	</p>
 	
 	<!-- TRIGGERS -->
+	<!-- Location -->
 	<div id="triggers_location" class="trigger_type_tool hide">
 		<h3>Select App</h3>
-
-		<?= form_dropdown('location_trigger', config_item('actions_triggers_location_apps'), 'none', 'id=""') ?>
+		<?= form_dropdown('trigger_location', config_item('actions_triggers_location_apps'), 'none', 'id="trigger_location_apps"') ?>
 	
-		<div id="triggers_fourquare">
+		<div id="triggers_foursquare" class="trigger_type_apps hide">
 			<p>
-				<?= form_dropdown('location_trigger', config_item('actions_triggers_foursquare'), 'none', 'id=""') ?>
+				<?= form_dropdown('location_trigger', config_item('actions_triggers_type_foursquare'), 'none', 'id=""') ?>
 				<?= form_dropdown('location_trigger', config_item('actions_triggers_location'), 'none', 'id=""') ?> of 
 				
-				<select name="trigger_target_location">
+				<select name="trigger_target_location" class="trigger_last_value">
 					<option value="none">---select---</option>
 				<?php foreach ($places as $place): ?>
 					<option value="<?= $place->content_id ?>" data-lat="<?= $place->geo_lat ?>" data-long="<?= $place->geo_long ?>"><?= $place->title ?></option>
@@ -31,21 +31,26 @@
 			</p>
 		</div>
 		
-		<div id="triggers_geoloqi">
-			
+		<div id="triggers_geoloqi" class="trigger_type_apps hide">
+			<p>
+				Some wicked sweet GeoLoqi triggers will go here! But for now have fun with Foursquare
+			</p>
 		</div>
 	</div>
-
+	
+	<!-- Message -->
 	<div id="triggers_message" class="trigger_type_tool hide">
 		<h3>Message</h3>
 		<p>Message Action Shizzzle Will Go Here</p>
 	</div>	
 
+	<!-- Post -->
 	<div id="triggers_post" class="trigger_type_tool hide">
 		<h3>Post</h3>
 		<p>When I get this</p>
 	</div>	
 	
+	<!-- Person -->
 	<div id="triggers_person" class="trigger_type_tool hide">
 		<h3>Person</h3>
 		<p>When this Person does something</p>
@@ -53,7 +58,7 @@
 	</div>		
 	
 	<!-- ACTIONS -->
-	<div id="actions">
+	<div id="actions" class="hide">
 		<h3>Do This Cool Thing</h3>
 		<select name="action_type" id="action_type">
 			<option value="">---select---</option>
@@ -84,9 +89,6 @@
 
 	</div>
 
-
-	<input type="hidden" name="geo_lat" id="geo_lat" value="" autocomplete="off">
-
 	
 </div>
 
@@ -110,6 +112,25 @@ $(document).ready(function()
 	{
 		$('.trigger_type_tool').hide();
 		$('#triggers_' + $(this).val()).fadeIn();
+	});
+	
+	// Location Apps
+	$('#trigger_location_apps').change(function()
+	{
+		console.log($(this).val());
+		$('.trigger_type_apps').hide();
+		$('#triggers_' + $(this).val()).fadeIn();		
+	})
+
+
+	// Last Trigger (show actions)
+	$('.trigger_last_value').change(function()
+	{
+		console.log($(this).val());
+		if ($(this).val() != 'none')
+		{
+			$('#actions').fadeIn();
+		}
 	});
 
 	// Actions

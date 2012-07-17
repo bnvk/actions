@@ -27,7 +27,7 @@ $config['actions_triggers_location']	= array(
 );
 
 /* Foursquare Triggers */
-$config['actions_triggers_foursquare']	= array(
+$config['actions_triggers_type_foursquare'] = array(
 	'none'			=> '---select---',
 	'checkin_at'	=> 'I Checkin',
 	'last_checkin'	=> 'Last Checkin Was'
