@@ -18,12 +18,12 @@ $config['actions_triggers_location_apps']	= array(
 
 /* Location Trigger Details */
 $config['actions_triggers_location']	= array(
-	'none'					=> '---select---',
-	'within_quarter_mile'	=> '1/4 Mile',
-	'within_half_mile'		=> '1/2 Mile',
-	'within_one_mile'		=> '1 Mile',
-	'within_two_miles'		=> '2 Miles',
-	'within_anywhere'		=> 'Anywhere'
+	'none'		=> '---select---',
+	'0.25'		=> '1/4 Mile',
+	'0.5'		=> '1/2 Mile',
+	'1'			=> '1 Mile',
+	'2'			=> '2 Miles',
+	'16000'		=> 'Anywhere'
 );
 
 /* Foursquare Triggers */
