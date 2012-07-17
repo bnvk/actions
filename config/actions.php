@@ -16,16 +16,15 @@ $config['actions_triggers_location_apps']	= array(
 	'geoloqi'		=> 'GeoLoqi'
 );
 
-
 /* Location Trigger Details */
 $config['actions_triggers_location']	= array(
 	'none'					=> '---select---',
 	'within_quarter_mile'	=> 'Within 1/4 Mile',
 	'within_half_mile'		=> 'Within 1/2 Mile',
 	'within_one_mile'		=> 'Within 1 Mile',
-	'within_two_miles'		=> 'Within 2 Miles'
+	'within_two_miles'		=> 'Within 2 Miles',
+	'within_anywhere'		=> 'Within Anywhere'
 );
-
 
 /* Foursquare Triggers */
 $config['actions_triggers_foursquare']	= array(

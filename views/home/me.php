@@ -14,15 +14,25 @@
 	<!-- TRIGGERS -->
 	<div id="triggers_location" class="trigger_type_tool hide">
 		<h3>Select App</h3>
-		<p>
-			<?= form_dropdown('location_trigger', config_item('actions_triggers_location_apps'), 'none', 'id=""') ?>
-		</p>
 
+		<?= form_dropdown('location_trigger', config_item('actions_triggers_location_apps'), 'none', 'id=""') ?>
+	
 		<div id="triggers_fourquare">
 			<p>
 				<?= form_dropdown('location_trigger', config_item('actions_triggers_foursquare'), 'none', 'id=""') ?>
-				<?= form_dropdown('location_trigger', config_item('actions_triggers_location'), 'none', 'id=""') ?>
+				<?= form_dropdown('location_trigger', config_item('actions_triggers_location'), 'none', 'id=""') ?> of 
+				
+				<select name="trigger_target_location">
+					<option value="none">---select---</option>
+				<?php foreach ($places as $place): ?>
+					<option value="<?= $place->content_id ?>" data-lat="<?= $place->geo_lat ?>" data-long="<?= $place->geo_long ?>"><?= $place->title ?></option>
+				<?php endforeach; ?>
+				</select>
 			</p>
+		</div>
+		
+		<div id="triggers_geoloqi">
+			
 		</div>
 	</div>
 
@@ -54,12 +64,18 @@
 		<div id="actions_message" class="actions_type_tool hide">
 			<h3>Send a Message to</h3>
 			<p>
+				<select name="message_type">
+					<option value="sms">SMS</option>
+					<option value="call">Call</option>
+					<option value="email">Email</option>
+				</select>
 				<select name="message_user">
-					<?php foreach ($users as $user): ?>
+					<?php foreach ($users as $user): if ($user->phone_number): ?>
 					<option value="<?= $user->user_id ?>" data-email="<?= $user->email ?>" data-phone_number="<?= $user->phone_number ?>"><?= $user->name ?></option>
-					<?php endforeach; ?>
-				</select> 
-			<p><textarea name="message_text" cols="40" rows="3" placeholder="Hey there Boss Hog..."></textarea></p>
+					<?php endif; endforeach; ?>
+				</select><br>
+				<textarea name="message_text" cols="40" rows="3" placeholder="Hey there Boss Hog..."></textarea>
+			</p>
 		</div>
 		
 		<div id="actions_post" class="actions_type_tool hide">

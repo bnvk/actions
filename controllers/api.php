@@ -121,4 +121,32 @@ class Api extends Oauth_Controller
         $this->response($message, 200);
     }
 
+    function cron_job_get()
+    {
+    	// Load Libraries for compatible Apps (foursquare, geoloqi, messages)
+    	$this->load->library('foursquare/foursquare_library');
+    
+	    // Query Actions Table for "actions"
+	    
+	    
+	    // Loop through "actions"
+	    
+	    	// Check "trigger_type" 
+		    if ($action->trigger_type == 'foursquare')
+		    {
+		    	$checkins = $this->foursquare_library->get_checkins();
+		    	
+		    	// Process "trigger_detail"
+		    	
+		    	if ($this->places_igniter->is_geo_within_fence($checkin->lat, $checkin->lon, $action->fence))
+		    	{
+			    		
+			    	// Now do "action" (send SMS or Email)	
+			    	
+		    	}
+		    	
+		    }
+	    
+    }
+    
 }

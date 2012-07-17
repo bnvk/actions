@@ -21,6 +21,8 @@ class Home extends Dashboard_Controller
 	
 	function me()
 	{
+	
+		$this->data['places']		= $this->social_igniter->get_content_view('module', 'places', 'all', 100);
 		$this->data['users']		= $this->social_auth->get_users('active', 1, TRUE);
 		$this->data['sub_title'] 	= 'My Actions';
 	

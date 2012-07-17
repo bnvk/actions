@@ -56,8 +56,7 @@ $config['database_actions_actions_table'] = array(
 	'null'					=> TRUE
 ),
 'action_data' => array(
-	'type'					=> 'VARCHAR',
-	'constraint' 			=> '255',
+	'type'					=> 'TEXT',
 	'null'					=> TRUE
 ),
 'created_at' => array(
