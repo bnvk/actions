@@ -13,6 +13,8 @@ class Api extends Oauth_Controller
     function __construct()
     {
         parent::__construct();
+        
+
 	}
 
     /* Install App */
@@ -131,32 +133,51 @@ class Api extends Oauth_Controller
     function cron_job_get()
     {
     	// Load Libraries for compatible Apps (foursquare, geoloqi, messages)
-    	$this->load->library('foursquare/foursquare_library');
+
+    	$this->load->library('places/places_igniter');
     	$this->load->model('actions/actions_model');
- 
+    	$this->load->library('twilio/twilio');
+      
  
 	    // Query Actions Table for "actions"
     	$actions = $this->actions_model->get_actions_view();
     	
-    	print_r($actions);
+    	
+    	//print_r($actions);
 	    
 	    // Loop through "actions"
-	    
+	    foreach($actions as $action){
+	      $connection  = $this->social_auth->check_connection_user($action->user_id, 'foursquare', 'primary');
+	      
+	      error_log("Connection: ".json_encode($connection));
+		$this->load->library('foursquare/foursquare_library', $connection->auth_one);
+        $checkins = $this->foursquare_library->recent_checkins();
+        //error_log("Checkins: ".json_encode($checkins));
+        $most_recent = $checkins->response->checkins->items[0];
+        //error_log("Most recent: ".json_encode($most_recent));
+        $lat = $most_recent->venue->location->lat;
+        $lon = $most_recent->venue->location->lng;
+
 	    	// Check "trigger_type" 
-		    if ($action->trigger_type == 'foursquare')
+		    if ($action->trigger_type == 'checkin_at')
 		    {
-		    	$checkins = $this->foursquare_library->get_checkins();
-		    	
+		      //error_log('type matches');
 		    	// Process "trigger_detail"
+		    	$trigger_detail = json_decode($action->trigger_detail);
+		    	$distance_target = explode(",", $trigger_detail->distance_target);
+		    	$distance = $this->places_igniter->distance($lon, $lat, $distance_target[1], $distance_target[0]);
 		    	
-		    	if ($this->places_igniter->is_geo_within_fence($checkin->lat, $checkin->lon, $action->fence))
-		    	{
-			    		
-			    	// Now do "action" (send SMS or Email)	
-			    	
-		    	}
+		    	//error_log("Distance: $distance miles away");
+		    	echo("Distance: $distance miles away");
+		    	//TODO get phone from database
+		    	$from 		= config_item('twilio_phone_number');
+		    	$to = "5038609514";
+		    	$message = "Distance: $distance miles away";
+		    	//$send_sms = $this->twilio->sms($from, $to, $message);
 		    	
 		    }
+		    
+		  }
 	    
     }
     
