@@ -157,23 +157,38 @@ class Api extends Oauth_Controller
         //error_log("Most recent: ".json_encode($most_recent));
         $lat = $most_recent->venue->location->lat;
         $lon = $most_recent->venue->location->lng;
+        $venue_name = $most_recent->venue->name;
+        
+        error_log("Most recent: ".json_encode($most_recent));
 
 	    	// Check "trigger_type" 
 		    if ($action->trigger_type == 'checkin_at')
 		    {
 		      //error_log('type matches');
 		    	// Process "trigger_detail"
-		    	$trigger_detail = json_decode($action->trigger_detail);
-		    	$distance_target = explode(",", $trigger_detail->distance_target);
+		    	$distance_target = explode(",", $action->trigger_value);
+		    	$weather_url = "http://i.wxbug.net/REST/Direct/GetForecast.ashx?la=$lat&lo=$lon&nf=1&c=US&l=en&api_key=f9pgpdb5d4rv5ssvmz9enjyt";
+		    	$weather = json_decode(file_get_contents($weather_url))->forecastList[0];
+		    	$prediction = explode(".",$weather->nightPred);
 		    	$distance = $this->places_igniter->distance($lon, $lat, $distance_target[1], $distance_target[0]);
 		    	
 		    	//error_log("Distance: $distance miles away");
 		    	echo("Distance: $distance miles away");
 		    	//TODO get phone from database
 		    	$from 		= config_item('twilio_phone_number');
-		    	$to = "5038609514";
-		    	$message = "Distance: $distance miles away";
-		    	//$send_sms = $this->twilio->sms($from, $to, $message);
+		    	#$to = "5038609514";
+		    	$to = $action->action_target;
+		    	$message = "I'm currently at $venue_name. $action->action_data. weather should be $prediction[0]";
+		    	if($distance <= $action->trigger_param){
+		    	  $send_sms = $this->twilio->sms($from, $to, $message);
+		    	  error_log("SMS msg is: ".json_encode($send_sms));
+		    	  echo "sent";
+		    	}
+		    	else {
+		    	  echo "unset";
+		    	}
+		    	
+		    	echo "$message";
 		    	
 		    }
 		    
