@@ -25,12 +25,15 @@ $config['actions_triggers_location']	= array(
 	'2'			=> '2 Miles',
 	'3'			=> '3 Miles',
 	'4'			=> '4 Miles',
+	'5'			=> '5 Miles',
+	'10'		=> '10 Miles',
+	'25'		=> '25 Miles',
 	'16000'		=> 'Anywhere'
 );
 
 /* Foursquare Triggers */
 $config['actions_triggers_type_foursquare'] = array(
 	'none'			=> '---select---',
-	'checkin_at'	=> 'Checkin',
-	'last_checkin'	=> 'Last Checkin Was'
+	'checkin_at'	=> 'My Current Checkin',
+	'last_checkin'	=> 'My Last Checkin Was'
 );

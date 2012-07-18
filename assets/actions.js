@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+
 	// Triggers
 	$('#trigger_type').change(function()
 	{
@@ -11,7 +12,6 @@ $(document).ready(function()
 	// Location Apps
 	$('#trigger_location_apps').change(function()
 	{
-		console.log($(this).val());
 		$('.trigger_type_apps').hide();
 		$('#triggers_' + $(this).val()).fadeIn();		
 	})
@@ -21,7 +21,6 @@ $(document).ready(function()
 	// Last Trigger (show actions)
 	$('.trigger_last_value').change(function()
 	{
-		console.log($(this).val());
 		if ($(this).val() != 'none')
 		{
 			$('#actions').fadeIn();
@@ -39,11 +38,25 @@ $(document).ready(function()
 	});
 
 
+	// Last Action Value (show actions)
+	$('.action_last_value').change(function()
+	{
+		if ($(this).val() != 'none')
+		{
+			var action_param = $('#action_type_message').val();
+		
+			$('#actions_message_' + action_param).fadeIn();
+			$('#action_complete').fadeIn();
+		}
+	});
+
+
 	// Send Datas to Servers
 	$('#action_complete').bind('click', function(e)
 	{
 		e.preventDefault();
 
+	
 		var user_state		= 'hackin';
 		var type 			= $('#trigger_type').val();
 		var trigger			= $('#trigger_' + type + '_apps').val();
@@ -52,9 +65,19 @@ $(document).ready(function()
 		var trigger_value 	= $('#trigger_' + type + '_value_' + trigger).val();
 		var action_type 	= $('#action_type').val();
 		var action_param	= $('#action_type_message').val();
+		
+		console.log(action_param);
+		
 		var action_select	= $('#action_message_user').find('option:selected');
+		
+		console.log(action_select);
+		
 		var action_target	= action_select.data(action_param);
+		
+		console.log(action_target);
+		
 		var action_data 	= $('#action_message_data').val();
+
 
 		var action = $('#create_action').serializeArray();
 		action.push({'name':'user_state','value':user_state});

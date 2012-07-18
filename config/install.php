@@ -50,9 +50,9 @@ $config['database_actions_actions_table'] = array(
 	'constraint' 			=> '128',
 	'null'					=> TRUE
 ),
-'trigger_detail' => array(
+'trigger_value' => array(
 	'type'					=> 'VARCHAR',
-	'constraint' 			=> '32',
+	'constraint' 			=> '255',
 	'null'					=> TRUE
 ),
 'action' => array(

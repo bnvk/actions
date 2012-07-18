@@ -1,1 +1,1 @@
-<li><a class="sidebar_icon" href="<?= base_url() ?>home/actions/me"><img src="<?= $this_module_assets ?>actions_24.png"><span>Actions</span></a></li>
+<li><a class="sidebar_icon" href="<?= base_url() ?>home/actions/create"><img src="<?= $this_module_assets ?>actions_24.png"><span>Actions</span></a></li>
