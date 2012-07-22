@@ -29,19 +29,22 @@ class Actions_model extends CI_Model {
     
     function add_action($action_data)
     {
- 		$action_data['created_at'] = unix_to_mysql(now());
-		$action_data['updated_at'] = unix_to_mysql(now());
+    	if (!isset($action_data['status_time'])) $action_data['status_time'] = unix_to_mysql(now());  
+    
+ 		$action_data['status']		= 'waiting';
+ 		$action_data['created_at']	= unix_to_mysql(now());
+		$action_data['updated_at']	= unix_to_mysql(now());
 
 		$insert 	= $this->db->insert('actions', $action_data);
 		$action_id 	= $this->db->insert_id();
 		return $this->db->get_where('actions', array('action_id' => $action_id))->row();
     }
 
-    function udpate_action($data_id, $action_data)
+    function update_action($action_id, $action_data)
     {
 		$data['updated_at'] = unix_to_mysql(now());
 		$this->db->where('action_id', $action_id);
-		$this->db->update('actions', $data);
+		$this->db->update('actions', $action_data);
 		return $this->db->get_where('actions', array('action_id' => $action_id))->row();	
     }
 
