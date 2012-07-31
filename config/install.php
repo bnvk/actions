@@ -69,6 +69,24 @@ $config['database_actions_actions_table'] = array(
 	'type'					=> 'TEXT',
 	'null'					=> TRUE
 ),
+'action_life' => array(
+	'type'					=> 'CHAR',
+	'constraint'			=> 16,
+	'null'					=> TRUE
+),
+'action_time' => array(
+	'type'					=> 'DATETIME',
+	'default'				=> '9999-12-31 00:00:00'
+),
+'action_status' => array(
+	'type'					=> 'CHAR',
+	'constraint'			=> 16,
+	'null'					=> TRUE
+),
+'completed_at' => array(
+	'type'					=> 'DATETIME',
+	'default'				=> '9999-12-31 00:00:00'
+),
 'created_at' => array(
 	'type'					=> 'DATETIME',
 	'default'				=> '9999-12-31 00:00:00'

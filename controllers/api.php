@@ -173,25 +173,24 @@ class Api extends Oauth_Controller
 		    	$distance = $this->places_igniter->distance($lon, $lat, $distance_target[1], $distance_target[0]);
 		    	
 		    	//error_log("Distance: $distance miles away");
-		    	echo("Distance: $distance miles away");
+		    	//echo("Distance: $distance miles away");
 		    	//TODO get phone from database
 		    	$from 		= config_item('twilio_phone_number');
-		    	#$to = "5038609514";
-		    	$to = $action->action_target;
-		    	$message = "I'm currently at $venue_name. $action->action_data. weather should be $prediction[0]";
-		    	if($distance <= $action->trigger_param){
-		    	  $send_sms = $this->twilio->sms($from, $to, $message);
-		    	  error_log("SMS msg is: ".json_encode($send_sms));
-		    	  echo "sent";
-		    	}
-		    	else {
-		    	  echo "unset";
-		    	}
+		    	$to 		= $action->action_target;
+		    	$message 	= $action->action_data." I'm currently at ".$venue_name.". Weather should be ".$prediction[0];
 		    	
-		    	echo "$message";
-		    	
+		    	// If Distance Is Closer Than Trigger
+		    	if($distance <= $action->trigger_param)
+		    	{
+					$send_sms = $this->twilio->sms($from, $to, $message);
+					//error_log("SMS msg is: ".json_encode($send_sms));
+					echo "SENT: ".$message;
+		    	}
+		    	else 
+		    	{
+		    		echo "unset";
+		    	}		    	
 		    }
-		    
 		  }
 	    
     }
