@@ -9,7 +9,9 @@
 * Description: this file Actions
 */
 
-$config['actions_path']					= 'actions/';
+$config['actions_path']				= 'actions/';
+$config['actions_widgets']			= FALSE;
+$config['actions_categories']		= TRUE;
 $config['actions_triggers_location_apps']	= array(
 	'none'			=> '---select---',
 	'foursquare'	=> 'Foursquare',
