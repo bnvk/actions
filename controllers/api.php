@@ -26,9 +26,12 @@ class Api extends Oauth_Controller
 		$this->load->dbforge();
 
 		// Create Data Table
-		$this->dbforge->add_key('action_id', TRUE);
-		$this->dbforge->add_field(config_item('database_actions_actions_table'));
-		$this->dbforge->create_table('actions');
+		if (!$this->db->table_exists('actions'))
+		{
+			$this->dbforge->add_key('action_id', TRUE);
+			$this->dbforge->add_field(config_item('database_actions_actions_table'));
+			$this->dbforge->create_table('actions');
+		}
 
 		// Settings & Create Folders
 		$settings = $this->installer->install_settings('actions', config_item('actions_settings'));
