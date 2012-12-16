@@ -1,7 +1,7 @@
 <div id="create_action">
 
 	<h2>Create Action</h2>
-	
+
 	<p>When
 		<select name="trigger_type" id="trigger_type">
 			<option value="">---select---</option>
@@ -9,15 +9,15 @@
 			<option value="message">I Recieve a Message</option>
 			<option value="post">I Publish a</option>
 			<option value="person">A Person</option>
-			<option value="date_time">The Date / Time Is</option>
+			<option value="date_time">The Date / Time</option>
 		</select>
-		
+
 		<!-- TRIGGERS -->
 		<span id="triggers_location" class="trigger_type_tool hide"> tracked via <?= form_dropdown('trigger_location', config_item('actions_triggers_location_apps'), 'none', 'id="trigger_location_apps"') ?></span>
 		<span id="triggers_message" class="trigger_type_tool hide"> Message Action Shizzzle Will Go Here</span>	
 		<span id="triggers_post" class="trigger_type_tool hide">When I get this</span>	
 		<span id="triggers_person" class="trigger_type_tool hide">When this Person does something</span>
-		<span id="triggers_date_time" class="trigger_type_tool hide">Will be pickable by a date or time happens</span>
+		<span id="triggers_date_time" class="trigger_type_tool hide">is <input type="date" name="date-fullyear" value="<?= unix_to_mysql(now()) ?>"> <input type="time"></span>
 
 	</p>
 	
